@@ -10,6 +10,12 @@ const memoryNext = document.getElementById("memoryNext");
 const memorySlider = document.getElementById("memorySlider");
 const musicToggle = document.getElementById("musicToggle");
 const roseCards = Array.from(document.querySelectorAll(".rose-card"));
+const proposeMusicToggle = document.getElementById("proposeMusicToggle");
+const bgMusic = document.getElementById("bgMusic");
+const revealBlocks = Array.from(document.querySelectorAll(".reveal-block"));
+const answerInput = document.getElementById("answerInput");
+const sendWhatsapp = document.getElementById("sendWhatsapp");
+const whatsappStatus = document.getElementById("whatsappStatus");
 
 const fireworksCanvas = document.getElementById("fireworks");
 const ctx = fireworksCanvas ? fireworksCanvas.getContext("2d") : null;
@@ -197,4 +203,99 @@ if (document.body.dataset.page === "valentine") {
 
 if (promiseList) {
   revealPromise();
+}
+
+if (document.body.dataset.page === "propose") {
+  let musicStarted = false;
+  const startMusicOnScroll = async () => {
+    if (!bgMusic || musicStarted) return;
+    try {
+      await bgMusic.play();
+      if (proposeMusicToggle) proposeMusicToggle.textContent = "Pause Music";
+      musicStarted = true;
+    } catch (error) {
+      // Autoplay was prevented
+    }
+    window.removeEventListener("scroll", startMusicOnScroll);
+  };
+  window.addEventListener("scroll", startMusicOnScroll);
+
+  if (revealBlocks.length) {
+    const updateRevealStates = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const focusStart = scrollTop + windowHeight * 0.4;
+      const focusEnd = scrollTop + windowHeight * 0.7;
+
+      revealBlocks.forEach((block) => {
+        const rect = block.getBoundingClientRect();
+        const elementTop = scrollTop + rect.top;
+        const elementMiddle = elementTop + rect.height / 2;
+
+        // Check if element is in focus zone
+        if (elementMiddle >= focusStart && elementMiddle <= focusEnd) {
+          block.classList.add("is-focused");
+          block.classList.remove("is-passed");
+        }
+        // Element is above focus zone (already read)
+        else if (elementMiddle < focusStart) {
+          block.classList.remove("is-focused");
+          block.classList.add("is-passed");
+        }
+        // Element is below focus zone (not yet reached)
+        else {
+          block.classList.remove("is-focused");
+          block.classList.remove("is-passed");
+        }
+      });
+    };
+
+    // Run on scroll, resize, and initial load
+    window.addEventListener("scroll", updateRevealStates, { passive: true });
+    window.addEventListener("resize", updateRevealStates, { passive: true });
+    // Initial call with slight delay to ensure page is loaded
+    setTimeout(updateRevealStates, 100);
+  }
+
+  proposeMusicToggle?.addEventListener("click", async () => {
+    if (!bgMusic) return;
+    if (bgMusic.paused) {
+      try {
+        await bgMusic.play();
+        proposeMusicToggle.textContent = "Pause Music";
+        musicStarted = true;
+        window.removeEventListener("scroll", startMusicOnScroll);
+      } catch (error) {
+        if (whatsappStatus) {
+          whatsappStatus.textContent = "Tap again to allow music playback.";
+        }
+      }
+    } else {
+      bgMusic.pause();
+      proposeMusicToggle.textContent = "Play Music";
+    }
+  });
+
+  sendWhatsapp?.addEventListener("click", () => {
+    const message = answerInput?.value.trim();
+    const rawNumber = document.body.dataset.whatsapp || "";
+    const number = rawNumber.replace(/\D/g, "");
+
+    if (!number) {
+      if (whatsappStatus) {
+        whatsappStatus.textContent = "Add your WhatsApp number in script.js to send.";
+      }
+      return;
+    }
+
+    if (!message) {
+      if (whatsappStatus) {
+        whatsappStatus.textContent = "Please type your answer first.";
+      }
+      return;
+    }
+
+    const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener");
+  });
 }
