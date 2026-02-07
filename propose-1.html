@@ -7,51 +7,889 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #1a0a14 0%, #3b1524 50%, #2d1420 100%);
+      color: #f7f3f0;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 183, 197, 0.5), rgba(255, 122, 162, 0.2) 50%, transparent 70%);
+      filter: blur(45px);
+      animation: float 10s ease-in-out infinite;
+    }
+
+    .orb1 {
+      width: 350px;
+      height: 350px;
+      top: 10%;
+      left: -10%;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 300px;
+      height: 300px;
+      bottom: 15%;
+      right: -5%;
+      animation-delay: 2.5s;
+    }
+
+    .orb3 {
+      width: 250px;
+      height: 250px;
+      top: 50%;
+      right: 15%;
+      animation-delay: 5s;
+    }
+
+    .orb4 {
+      width: 280px;
+      height: 280px;
+      top: 30%;
+      left: 50%;
+      animation-delay: 7s;
+    }
+
+    .orb5 {
+      width: 200px;
+      height: 200px;
+      bottom: 40%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        opacity: 0.8;
+      }
+      25% {
+        transform: translate(40px, -35px) scale(1.15) rotate(90deg);
+        opacity: 1;
+      }
+      50% {
+        transform: translate(-30px, 25px) scale(0.85) rotate(180deg);
+        opacity: 0.7;
+      }
+      75% {
+        transform: translate(25px, 30px) scale(1.1) rotate(270deg);
+        opacity: 0.9;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #ff7aa2, #ffd1e8);
+      transform: rotate(45deg);
+      animation: heartFloat 8s ease-in-out infinite;
+      opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: inherit;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -10px;
+    }
+
+    .heart1 {
+      top: 20%;
+      left: 15%;
+      animation-delay: 0s;
+    }
+
+    .heart2 {
+      bottom: 30%;
+      right: 20%;
+      animation-delay: 4s;
+    }
+
+    .heart3 {
+      top: 60%;
+      left: 40%;
+      animation-delay: 2s;
+    }
+
+    .heart4 {
+      bottom: 50%;
+      right: 40%;
+      animation-delay: 6s;
+    }
+
+    @keyframes heartFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(45deg) scale(1);
+        opacity: 0.6;
+      }
+      33% {
+        transform: translateY(-35px) rotate(55deg) scale(1.2);
+        opacity: 1;
+      }
+      66% {
+        transform: translateY(-15px) rotate(40deg) scale(0.9);
+        opacity: 0.7;
+      }
+    }
+
+    /* Header */
+    .header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px clamp(20px, 5vw, 60px);
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(20px, 3vw, 28px);
+      letter-spacing: 1px;
+    }
+
+    .date-pill {
+      padding: 10px 20px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Main Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px clamp(20px, 5vw, 40px) 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      width: 100%;
+    }
+
+    .ring-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      position: relative;
+      height: 100px;
+    }
+
+    .ring {
+      width: 70px;
+      height: 70px;
+      border: 5px solid #ffd700;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+      animation: ringGlow 3s ease-in-out infinite;
+    }
+
+    .ring::before {
+      content: "";
+      position: absolute;
+      top: -15px;
+      right: -10px;
+      width: 25px;
+      height: 25px;
+      background: #ffd700;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+
+    @keyframes ringGlow {
+      0%, 100% {
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        transform: rotate(0deg);
+      }
+      50% {
+        box-shadow: 0 0 50px rgba(255, 215, 0, 0.9);
+        transform: rotate(180deg);
+      }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      top: 20%;
+      right: 35%;
+      animation: sparkle 2s ease-in-out infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    .hero-kicker {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(20px, 3.5vw, 30px);
+      color: #ffd1e8;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(36px, 6vw, 60px);
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: #e0c2d0;
+      line-height: 1.8;
+    }
+
+    /* Music Bar */
+    .music-bar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 25px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .music-bar h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(22px, 3vw, 28px);
+      margin-bottom: 5px;
+    }
+
+    .music-bar p {
+      font-size: 14px;
+      color: #f0c6d7;
+    }
+
+    .play-btn {
+      background: linear-gradient(120deg, #ff7aa2, #ffb7c5);
+      color: #1b1222;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(255, 122, 162, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .play-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(255, 122, 162, 0.5);
+    }
+
+    /* Love Letter */
+    .love-letter {
+      width: 100%;
+      background: rgba(20, 15, 25, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: clamp(30px, 5vw, 50px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      min-height: 200vh;
+    }
+
+    .love-letter h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(26px, 4vw, 38px);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .text-line {
+      font-size: clamp(16px, 2.5vw, 20px);
+      line-height: 2;
+      text-align: center;
+      margin: 15px 0;
+      opacity: 0.1;
+      transform: translateY(30px);
+      filter: blur(5px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .text-line.focused {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    .text-line.passed {
+      opacity: 0.05;
+      transform: translateY(-15px);
+      filter: blur(6px);
+    }
+
+    /* Answer Box */
+    .answer-box {
+      margin-top: 50px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 183, 197, 0.3);
+      border-radius: 25px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .answer-box label {
+      display: block;
+      font-size: 16px;
+      color: #ffd1e8;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .answer-box textarea {
+      width: 100%;
+      background: rgba(10, 8, 15, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 15px;
+      color: #fff;
+      font-family: "Poppins", sans-serif;
+      font-size: 15px;
+      resize: vertical;
+      min-height: 100px;
+      margin-bottom: 15px;
+    }
+
+    .answer-box textarea:focus {
+      outline: none;
+      border-color: rgba(255, 183, 197, 0.6);
+      box-shadow: 0 0 20px rgba(255, 183, 197, 0.3);
+    }
+
+    .send-btn {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .send-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .status-text {
+      margin-top: 10px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+    }
+
+    /* Footer */
+    .footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 30px 20px 20px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .footer-music-control {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .footer-music-btn {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      color: #ffd1e8;
+      border: 1px solid rgba(255, 183, 197, 0.3);
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-music-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 122, 162, 0.3);
+    }
+
+    .music-icon {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+    }
+
+    /* Full Page Overlay */
+    .page-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a0a14 0%, #3b1524 50%, #2d1420 100%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .page-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .overlay-content {
+      text-align: center;
+      padding: 40px;
+      max-width: 600px;
+    }
+
+    .overlay-gift {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 30px;
+      position: relative;
+      animation: giftPulse 2.5s ease-in-out infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gift-svg {
+      width: 100px;
+      height: 100px;
+      color: #ffd700;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.6));
+      animation: svgGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes giftPulse {
+      0%, 100% {
+        transform: scale(1) translateY(0);
+      }
+      50% {
+        transform: scale(1.1) translateY(-10px);
+      }
+    }
+
+    @keyframes svgGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.6));
+      }
+      50% {
+        filter: drop-shadow(0 0 40px rgba(255, 215, 0, 1.2)) drop-shadow(0 0 70px rgba(255, 215, 0, 0.8));
+      }
+    }
+
+    .overlay-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 20px;
+      color: #ffd1e8;
+    }
+
+    .overlay-subtitle {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: #e0c2d0;
+      line-height: 1.8;
+      margin-bottom: 35px;
+    }
+
+    .enter-btn {
+      background: linear-gradient(120deg, #ff7aa2, #ffb7c5);
+      color: #1b1222;
+      border: none;
+      padding: 16px 50px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 10px 35px rgba(255, 122, 162, 0.5);
+      transition: all 0.3s;
+      animation: btnPulse 2s ease-in-out infinite;
+    }
+
+    .enter-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 45px rgba(255, 122, 162, 0.6);
+    }
+
+    @keyframes btnPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .page-content {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .page-content.visible {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .music-bar {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
-<body class="day-page propose" data-page="propose">
-  <div class="page-wrapper">
-    <header class="page-nav">
-      <div class="logo">Propose Day</div>
-      <div class="date-pill" id="todayDisplay"></div>
-    </header>
-
-    <section class="day-container">
-      <div class="day-hero">
-        <div class="ring-wrapper">
-          <div class="ring"></div>
-          <div class="sparkle"></div>
-        </div>
-        <h1>Propose Day</h1>
-        <p>
-          Kresha, every heartbeat leads to you — the one I want to hold forever.
-        </p>
+<body>
+  <!-- Full Page Overlay -->
+  <div class="page-overlay" id="pageOverlay">
+    <div class="overlay-content">
+      <div class="overlay-gift">
+        <svg xmlns="http://www.w3.org/2000/svg" class="gift-svg" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A3 3 0 0 1 3 2.506zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43zM9 3h2.932l.023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0zM1 4v2h6V4zm8 0v2h6V4zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5zm-7 8V7H2v7.5a.5.5 0 0 0 .5.5z"/>
+        </svg>
       </div>
-
-      <div class="romantic-card">
-        <p class="subtle">Tap to reveal my question, wrapped in gold.</p>
-        <button class="secondary-btn" id="proposeReveal">Reveal My Question</button>
-        <div class="reveal-card" id="proposeMessage">
-          <p>Will you be the forever in all my sunsets and all my dawns?</p>
-        </div>
-      </div>
-
-      <div class="photo-grid">
-        <div class="photo-frame">
-          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Sample portrait" />
-          <span class="photo-caption">Kresha’s glow</span>
-        </div>
-        <div class="photo-frame">
-          <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" alt="Sample ring" />
-          <span class="photo-caption">A promise</span>
-        </div>
-      </div>
-    </section>
-    <footer class="site-footer">
-      <span class="credit">© 2026 Made by Parth Vaghela | Framework by Sheenath Developers</span>
-    </footer>
+      <h1 class="overlay-title">💖 A Special Message Awaits 💖</h1>
+      <p class="overlay-subtitle">
+        Kresha, I have something important to share with you.<br>
+        Click below to reveal my heart.
+      </p>
+      <button class="enter-btn" id="enterBtn">Open My Heart</button>
+    </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Main Page Content -->
+  <div class="page-content" id="pageContent">
+    <!-- Animated Background -->
+    <div class="animated-bg">
+      <div class="glow-orb orb1"></div>
+      <div class="glow-orb orb2"></div>
+      <div class="glow-orb orb3"></div>
+      <div class="glow-orb orb4"></div>
+      <div class="glow-orb orb5"></div>
+      <div class="heart heart1"></div>
+      <div class="heart heart2"></div>
+      <div class="heart heart3"></div>
+      <div class="heart heart4"></div>
+    </div>
+
+    <!-- Header -->
+  <header class="header">
+    <div class="logo">Propose Day</div>
+    <div class="date-pill" id="dateDisplay">February 8, 2026</div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+     
+      <p class="hero-kicker">A promise wrapped in petals</p>
+      <h1>My Forever Question</h1>
+      <p class="hero-subtitle">
+        Kresha, every heartbeat leads to you — the one I want to hold forever.
+      </p>
+    </section>
+
+    <!-- Music Bar -->
+    <div class="music-bar">
+      <div>
+        <h2>Our song</h2>
+        <p>Soft music starts after your first tap.</p>
+      </div>
+      <button class="play-btn" id="musicBtn">Play Music</button>
+      <audio id="bgMusic" src="music-1.mp3" loop></audio>
+    </div>
+
+    <!-- Love Letter -->
+    <div class="love-letter">
+      <h2 class="text-line">💖 My Love, My Home, My Forever 💖</h2>
+      <p class="text-line">From the day you came into my life, nothing has been the same.</p>
+      <p class="text-line">Not because everything became perfect…</p>
+      <p class="text-line">but because everything finally felt right.</p>
+      <p class="text-line">You didn't just become my girlfriend.</p>
+      <p class="text-line">You became my safe place,</p>
+      <p class="text-line">my strength on weak days,</p>
+      <p class="text-line">my calm in chaos,</p>
+      <p class="text-line">and the person my soul runs to without thinking.</p>
+      <p class="text-line">With you, love is not loud promises —</p>
+      <p class="text-line">it's the quiet understanding,</p>
+      <p class="text-line">the late-night talks,</p>
+      <p class="text-line">the fights that end in holding each other tighter,</p>
+      <p class="text-line">the way you believe in me even when I don't.</p>
+      <p class="text-line">You are not someone I want in my future.</p>
+      <p class="text-line">You are someone I can't imagine a future without.</p>
+      <p class="text-line">Every smile of yours feels like home.</p>
+      <p class="text-line">Every tear of yours feels like my responsibility.</p>
+      <p class="text-line">Your happiness matters to me more than my own,</p>
+      <p class="text-line">because loving you changed the meaning of love itself.</p>
+      <p class="text-line">If life gives me a thousand paths,</p>
+      <p class="text-line">I will choose the one where your hand is in mine — every single time.</p>
+      <p class="text-line">Not just today.</p>
+      <p class="text-line">Not just on good days.</p>
+      <p class="text-line">But on all days… the messy ones, the hard ones, the forever ones.</p>
+      <p class="text-line">So today, with my whole heart and an unbreakable promise,</p>
+      <p class="text-line">I ask you…</p>
+      <p class="text-line">Will you be mine — not just as my girlfriend,</p>
+      <p class="text-line">but as my forever,</p>
+      <p class="text-line">my partner in every battle,</p>
+      <p class="text-line">my home in every lifetime?</p>
+      <p class="text-line">I don't promise perfection.</p>
+      <p class="text-line">I promise effort, loyalty, respect, and love that never runs away.</p>
+      <p class="text-line">I promise to choose you — every day — again and again.</p>
+      <p class="text-line">I already feel married to your soul.</p>
+      <p class="text-line">Now I just want the world to know…</p>
+      <p class="text-line">Will you be my forever? ❤️</p>
+
+      <!-- Answer Box -->
+      <div class="answer-box text-line">
+        <label for="answerInput">Your answer</label>
+        <textarea id="answerInput" placeholder="Type your answer here..."></textarea>
+        <button class="send-btn" id="sendBtn">Send to WhatsApp</button>
+        <p class="status-text" id="statusText">Your reply will open in WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-music-control">
+        <button class="footer-music-btn" id="footerMusicBtn">
+          <span class="music-icon">🎵</span>
+          <span id="footerMusicText">Play Music</span>
+        </button>
+      </div>
+      <span>© 2026 Made by Parth Vaghela | Framework by Sheenath Developers</span>
+    </footer>
+  </div>
+  <!-- End Page Content -->
+
+  <script>
+    // Page Overlay Control
+    const pageOverlay = document.getElementById("pageOverlay");
+    const pageContent = document.getElementById("pageContent");
+    const enterBtn = document.getElementById("enterBtn");
+
+    enterBtn.addEventListener("click", async () => {
+      pageOverlay.classList.add("hidden");
+      setTimeout(() => {
+        pageContent.classList.add("visible");
+        // Auto-play music when page opens
+        if (bgMusic && !musicStarted) {
+          bgMusic.play().then(() => {
+            musicStarted = true;
+            updateMusicButtons();
+          }).catch(err => {
+            console.log("Autoplay blocked");
+          });
+        }
+      }, 300);
+    });
+
+    // Main Script
+    // Configuration
+    const WHATSAPP_NUMBER = "+916352335304";
+
+    // Elements
+    const musicBtn = document.getElementById("musicBtn");
+    const bgMusic = document.getElementById("bgMusic");
+    const sendBtn = document.getElementById("sendBtn");
+    const answerInput = document.getElementById("answerInput");
+    const statusText = document.getElementById("statusText");
+    const textLines = document.querySelectorAll(".text-line");
+
+    let musicStarted = false;
+
+    // Auto-play music on first scroll
+    let hasScrolled = false;
+    window.addEventListener("scroll", async () => {
+      if (!hasScrolled && bgMusic && !musicStarted) {
+        hasScrolled = true;
+        try {
+          await bgMusic.play();
+          musicBtn.textContent = "Pause Music";
+          musicStarted = true;
+        } catch (e) {
+          // Autoplay blocked
+        }
+      }
+    }, { passive: true });
+
+    // Footer music button
+    const footerMusicBtn = document.getElementById("footerMusicBtn");
+    const footerMusicText = document.getElementById("footerMusicText");
+
+    function updateMusicButtons() {
+      if (bgMusic.paused) {
+        if (musicBtn) musicBtn.textContent = "Play Music";
+        if (footerMusicText) footerMusicText.textContent = "Play Music";
+      } else {
+        if (musicBtn) musicBtn.textContent = "Pause Music";
+        if (footerMusicText) footerMusicText.textContent = "Pause Music";
+      }
+    }
+
+    // Listen for music play/pause events
+    bgMusic.addEventListener("play", updateMusicButtons);
+    bgMusic.addEventListener("pause", updateMusicButtons);
+
+    // Music button control - MUST click to play
+    musicBtn.addEventListener("click", async () => {
+      if (bgMusic.paused) {
+        try {
+          await bgMusic.play();
+          musicStarted = true;
+          updateMusicButtons();
+        } catch (e) {
+          statusText.textContent = "Tap again to allow music.";
+        }
+      } else {
+        bgMusic.pause();
+        updateMusicButtons();
+      }
+    });
+
+    // Footer music button control
+    footerMusicBtn.addEventListener("click", async () => {
+      if (bgMusic.paused) {
+        try {
+          await bgMusic.play();
+          musicStarted = true;
+          updateMusicButtons();
+        } catch (e) {
+          console.log("Music play blocked");
+        }
+      } else {
+        bgMusic.pause();
+        updateMusicButtons();
+      }
+    });
+
+    // Scroll reveal animation
+    function updateTextReveal() {
+      const scrollTop = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const focusStart = scrollTop + windowHeight * 0.4;
+      const focusEnd = scrollTop + windowHeight * 0.7;
+
+      textLines.forEach((line) => {
+        const rect = line.getBoundingClientRect();
+        const lineTop = scrollTop + rect.top;
+        const lineCenter = lineTop + rect.height / 2;
+
+        // In focus zone
+        if (lineCenter >= focusStart && lineCenter <= focusEnd) {
+          line.classList.add("focused");
+          line.classList.remove("passed");
+        }
+        // Already scrolled past
+        else if (lineCenter < focusStart) {
+          line.classList.remove("focused");
+          line.classList.add("passed");
+        }
+        // Not yet reached
+        else {
+          line.classList.remove("focused");
+          line.classList.remove("passed");
+        }
+      });
+    }
+
+    // Event listeners for scroll reveal
+    window.addEventListener("scroll", updateTextReveal, { passive: true });
+    window.addEventListener("resize", updateTextReveal, { passive: true });
+    setTimeout(updateTextReveal, 100);
+
+    // WhatsApp send
+    sendBtn.addEventListener("click", () => {
+      const message = answerInput.value.trim();
+      
+      if (!message) {
+        statusText.textContent = "Please type your answer first.";
+        statusText.style.color = "#ff8a9a";
+        return;
+      }
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+      statusText.textContent = "Opening WhatsApp...";
+      statusText.style.color = "#a0ffa0";
+    });
+  </script>
 </body>
 </html>
