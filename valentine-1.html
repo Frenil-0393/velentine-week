@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valentine’s Day • Kresha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="day-page valentine" data-page="valentine">
+  <div class="page-wrapper">
+    <header class="page-nav">
+      <div class="logo">Valentine’s Day</div>
+      <div class="date-pill" id="todayDisplay"></div>
+    </header>
+
+    <section class="day-container">
+      <canvas id="fireworks"></canvas>
+      <div class="day-hero">
+        <h1>Valentine’s Day</h1>
+        <p>
+          Kresha, my love, every moment with you becomes a memory I treasure.
+          Born on 29/05/2006, you were a miracle the world was waiting for.
+        </p>
+      </div>
+
+      <div class="love-letter romantic-card" id="loveLetter">
+        <p>
+          You are my calm and my celebration, my soft place and my brightest
+          dream. I want a lifetime of morning smiles, quiet evenings, and endless
+          chapters with you.
+        </p>
+        <div class="memory-slider" id="memorySlider">
+          <div class="memory active">Your smile is my favorite sunrise.</div>
+          <div class="memory">Your laugh is my favorite melody.</div>
+          <div class="memory">Your heart is my favorite home.</div>
+        </div>
+        <div class="valentine-actions">
+          <button class="secondary-btn" id="memoryNext">Next Memory</button>
+          <button class="primary-btn" id="musicToggle">Play Romantic Music</button>
+        </div>
+      </div>
+
+      <div class="photo-grid">
+        <div class="photo-frame">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Sample romantic portrait" />
+          <span class="photo-caption">Kresha, my forever</span>
+        </div>
+        <div class="photo-frame">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="Sample moment" />
+          <span class="photo-caption">Our memories</span>
+        </div>
+        <div class="photo-frame">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Sample love" />
+          <span class="photo-caption">Every heartbeat</span>
+        </div>
+      </div>
+
+      <div class="heart-field" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <span class="credit">© 2026 Made by Parth Vaghela | Framework by Sheenath Developers</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
