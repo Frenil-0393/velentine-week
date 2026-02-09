@@ -3,53 +3,1064 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Promise Day • Kresha</title>
+  <title>Promise Day - My Sacred Promise to You</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== PROMISE DAY EXCLUSIVE STYLES ===== */
+    /* ===== INTRO OVERLAY ANIMATION ===== */
+    .intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #3b1524, #1a0a15);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      animation: introFadeOut 0.8s ease-out 3.5s forwards;
+      pointer-events: none;
+    }
+
+    @keyframes introFadeOut {
+      from {
+        opacity: 1;
+        visibility: visible;
+      }
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    .intro-content {
+      text-align: center;
+      animation: introContentAppear 0.6s ease-out 0.3s both;
+    }
+
+    @keyframes introContentAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .intro-hearts {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: introHeartsBounce 1s ease-in-out 0.8s infinite;
+    }
+
+    @keyframes introHeartsBounce {
+      0%, 100% {
+        transform: scale(1) translateY(0);
+      }
+      50% {
+        transform: scale(1.2) translateY(-30px);
+      }
+    }
+
+    .intro-text {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(28px, 6vw, 56px);
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff7aa2, #ffc87c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 20px 0;
+      animation: introTextGlow 1.5s ease-in-out 1.2s infinite;
+    }
+
+    @keyframes introTextGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 10px rgba(255, 122, 162, 0.5));
+      }
+      50% {
+        filter: drop-shadow(0 0 30px rgba(255, 200, 124, 0.8));
+      }
+    }
+
+    .intro-subtitle {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(18px, 4vw, 32px);
+      color: #ffc87c;
+      margin-top: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      animation: introSubtitleFloat 2s ease-in-out 1.5s infinite;
+    }
+
+    @keyframes introSubtitleFloat {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 0.9;
+      }
+      50% {
+        transform: translateY(-15px);
+        opacity: 1;
+      }
+    }
+    
+    /* ===== PROMISE DAY EXCLUSIVE STYLES ===== */
+    
+    body.promise-page {
+      background: linear-gradient(135deg, #1a0a15 0%, #2d1b2e 25%, #1f0f2e 50%, #2a1a35 75%, #1a0a15 100%);
+      background-size: 400% 400%;
+      animation: promiseGradientFlow 15s ease infinite;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    @keyframes promiseGradientFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Animated background text */
+    .promise-background-text {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(40px, 10vw, 180px);
+      font-weight: 700;
+      color: rgba(255, 200, 124, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 0;
+      pointer-events: none;
+      line-height: 1.2;
+      animation: textScaleFloat 20s ease-in-out infinite;
+      word-spacing: 100vw;
+      white-space: nowrap;
+      transform: rotateZ(-15deg);
+    }
+
+    @keyframes textScaleFloat {
+      0%, 100% {
+        transform: scale(0.95) rotateZ(-15deg);
+        opacity: 0.02;
+      }
+      50% {
+        transform: scale(1.05) rotateZ(-15deg);
+        opacity: 0.05;
+      }
+    }
+
+    /* Floating particles */
+    .promise-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .promise-particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, #ffc87c, #ff7aa2);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 122, 162, 0.6);
+      animation: floatParticle linear infinite;
+    }
+
+    @keyframes floatParticle {
+      0% {
+        opacity: 0;
+        transform: translateY(100vh) translateX(0);
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100vh) translateX(100px);
+      }
+    }
+
+    /* Main content container */
+    .promise-page .app {
+      position: relative;
+      z-index: 2;
+    }
+
+    .promise-header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      position: relative;
+    }
+
+    .promise-header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff7aa2 0%, #ffc87c 50%, #ff7aa2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      animation: titleGlowPulse 3s ease-in-out infinite;
+      text-shadow: 0 0 30px rgba(255, 122, 162, 0.5);
+    }
+
+    @keyframes titleGlowPulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(255, 122, 162, 0.4));
+        transform: translateY(0);
+      }
+      50% {
+        filter: drop-shadow(0 0 40px rgba(255, 200, 124, 0.6));
+        transform: translateY(-5px);
+      }
+    }
+
+    .promise-subtitle {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(20px, 4vw, 40px);
+      color: #ffc87c;
+      margin-bottom: 30px;
+      animation: subtitleFloat 4s ease-in-out infinite;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    @keyframes subtitleFloat {
+      0%, 100% {
+        transform: translateY(0) rotateZ(-2deg);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(-10px) rotateZ(2deg);
+        opacity: 1;
+      }
+    }
+
+    /* Decorative line */
+    .promise-divider {
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ff7aa2, transparent);
+      margin: 20px auto 30px;
+      animation: expandLine 2s ease-in-out infinite;
+    }
+
+    @keyframes expandLine {
+      0%, 100% {
+        width: 100px;
+        opacity: 0.5;
+      }
+      50% {
+        width: 150px;
+        opacity: 1;
+      }
+    }
+
+    /* Main promise content card */
+    .promise-container {
+      position: relative;
+      z-index: 3;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .promise-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 122, 162, 0.3);
+      border-radius: 30px;
+      padding: 50px 40px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                  0 0 100px rgba(255, 122, 162, 0.15);
+      animation: cardAppear 1s ease-out, cardGlow 4s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promise-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(255, 122, 162, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(255, 200, 124, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes cardGlow {
+      0%, 100% {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 0 100px rgba(255, 122, 162, 0.15);
+      }
+      50% {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                    0 0 150px rgba(255, 122, 162, 0.25);
+      }
+    }
+
+    @keyframes gradientShift {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    /* Promise statement */
+    .promise-statement {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .promise-statement h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(24px, 4vw, 48px);
+      color: #ffc87c;
+      margin-bottom: 25px;
+      animation: headingReveal 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes headingReveal {
+      from {
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: center bottom;
+      }
+      to {
+        opacity: 1;
+        transform: scaleY(1);
+        transform-origin: center bottom;
+      }
+    }
+
+    .promise-text {
+      font-family: "Poppins", sans-serif;
+      font-size: clamp(16px, 2vw, 18px);
+      color: #f7f3f0;
+      line-height: 1.8;
+      margin: 20px 0;
+      animation: textFadeIn 1.5s ease-out;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes textFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Animated underline for paragraphs */
+    .promise-text::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ff7aa2, #ffc87c);
+      margin: 15px auto 0;
+      animation: lineGrow 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes lineGrow {
+      from {
+        width: 0;
+      }
+      to {
+        width: 60px;
+      }
+    }
+
+    /* Promise checkmarks */
+    .promise-items {
+      display: grid;
+      gap: 25px;
+      margin-top: 35px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .promise-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      background: rgba(255, 122, 162, 0.08);
+      border: 1px solid rgba(255, 122, 162, 0.2);
+      animation: itemSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .promise-item:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    .promise-item:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    .promise-item:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+    .promise-item:nth-child(4) {
+      animation-delay: 0.8s;
+    }
+    .promise-item:nth-child(5) {
+      animation-delay: 1s;
+    }
+    .promise-item:nth-child(6) {
+      animation-delay: 1.2s;
+    }
+
+    .promise-item:hover {
+      background: rgba(255, 122, 162, 0.15);
+      border-color: rgba(255, 122, 162, 0.4);
+      transform: translateX(10px);
+      box-shadow: 0 10px 30px rgba(255, 122, 162, 0.2);
+    }
+
+    @keyframes itemSlideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .promise-icon {
+      font-size: 32px;
+      min-width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: iconBounce 2s ease-in-out infinite;
+    }
+
+    .promise-item:nth-child(1) .promise-icon {
+      animation-delay: 0s;
+    }
+    .promise-item:nth-child(2) .promise-icon {
+      animation-delay: 0.2s;
+    }
+    .promise-item:nth-child(3) .promise-icon {
+      animation-delay: 0.4s;
+    }
+    .promise-item:nth-child(4) .promise-icon {
+      animation-delay: 0.6s;
+    }
+    .promise-item:nth-child(5) .promise-icon {
+      animation-delay: 0.8s;
+    }
+    .promise-item:nth-child(6) .promise-icon {
+      animation-delay: 1s;
+    }
+
+    @keyframes iconBounce {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-10px) scale(1.15);
+      }
+    }
+
+    .promise-item-content h3 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(16px, 2vw, 20px);
+      color: #ffc87c;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .promise-item-content p {
+      font-size: 14px;
+      color: #c7c2bd;
+      line-height: 1.6;
+    }
+
+    /* Closing message */
+    .promise-closing {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 122, 162, 0.2);
+      animation: closingFadeIn 2s ease-out;
+    }
+
+    @keyframes closingFadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .promise-closing p {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(18px, 3vw, 32px);
+      color: #ff7aa2;
+      font-weight: 700;
+      margin: 15px 0;
+      letter-spacing: 1px;
+    }
+
+    .promise-signature {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(22px, 4vw, 40px);
+      color: #ffc87c;
+      margin-top: 20px;
+      font-weight: 700;
+      animation: signatureWave 3s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes signatureWave {
+      0%, 100% {
+        transform: translateY(0) rotateZ(-2deg);
+      }
+      50% {
+        transform: translateY(-8px) rotateZ(2deg);
+      }
+    }
+
+    /* Hearts floating */
+    .floating-heart {
+      position: fixed;
+      font-size: 30px;
+      pointer-events: none;
+      z-index: 1;
+      animation: heartFloat 6s ease-in-out forwards;
+    }
+
+    @keyframes heartFloat {
+      0% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-150vh) translateX(var(--tx, 0)) scale(0);
+      }
+    }
+
+    /* Sparkles effect */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      animation: sparkleAnimation 1.5s ease-out forwards;
+    }
+
+    @keyframes sparkleAnimation {
+      0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0) translateY(-50px);
+      }
+    }
+
+    /* Call to action button */
+    .promise-cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .promise-btn {
+      padding: 15px 40px;
+      font-size: 16px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: buttonAppear 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes buttonAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .promise-btn-primary {
+      background: linear-gradient(135deg, #ff7aa2, #ffc87c);
+      color: #1a0a15;
+      box-shadow: 0 10px 30px rgba(255, 122, 162, 0.4);
+    }
+
+    .promise-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(255, 122, 162, 0.6);
+    }
+
+    .promise-btn-secondary {
+      background: rgba(255, 122, 162, 0.15);
+      color: #ff7aa2;
+      border: 2px solid #ff7aa2;
+    }
+
+    .promise-btn-secondary:hover {
+      background: rgba(255, 122, 162, 0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 122, 162, 0.3);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .promise-card {
+        padding: 30px 20px;
+      }
+
+      .promise-header {
+        padding: 40px 20px 30px;
+      }
+
+      .promise-items {
+        gap: 15px;
+      }
+
+      .promise-item {
+        padding: 15px;
+      }
+    }
+
+    /* Footer styling */
+    .promise-footer {
+      margin-top: 60px;
+      text-align: center;
+      padding: 25px 20px;
+      color: #c7c2bd;
+      font-size: 13px;
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(255, 122, 162, 0.15);
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(10px);
+    }
+
+    .promise-footer a {
+      color: #ffc87c;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .promise-footer a:hover {
+      color: #ff7aa2;
+      text-decoration: underline;
+    }
+
+    /* Back button */
+    .promise-back-btn {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      z-index: 10;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 122, 162, 0.3);
+      color: #ff7aa2;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .promise-back-btn:hover {
+      background: rgba(255, 122, 162, 0.2);
+      border-color: #ff7aa2;
+      transform: translateX(-5px);
+    }
+
+    @media (max-width: 480px) {
+      .promise-back-btn {
+        top: 15px;
+        left: 15px;
+        padding: 10px 15px;
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
-<body class="day-page promise" data-page="promise">
-  <div class="page-wrapper">
-    <header class="page-nav">
-      <div class="logo">Promise Day</div>
-      <div class="date-pill" id="todayDisplay"></div>
-    </header>
+<body class="promise-page">
+  <!-- Intro Surprise Overlay -->
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-content">
+      <div class="intro-hearts">💕✨💕</div>
+      <div class="intro-text">Promise Day</div>
+      <div class="intro-subtitle">A Special Surprise For You</div>
+    </div>
+  </div>
 
-    <section class="day-container">
-      <div class="day-hero">
-        <div class="promise-icon">🤝</div>
-        <h1>Promise Day</h1>
-        <p class="handwritten">My promises, written only for you, Kresha.</p>
-      </div>
+  <!-- Animated background text -->
+  <div class="promise-background-text">Kresha</div>
 
-      <div class="romantic-card">
-        <ul class="promise-list" id="promiseList">
-          <li>I’ll listen with patience, even in quiet moments.</li>
-          <li>I’ll be your calm when the world feels loud.</li>
-          <li>I’ll celebrate your wins and guard your dreams.</li>
-          <li>I’ll keep choosing you, again and again.</li>
-          <li>I’ll protect your heart as if it were my own.</li>
-        </ul>
-        <button class="secondary-btn" id="promiseReveal">Reveal Next Promise</button>
-      </div>
+  <!-- Floating particles -->
+  <div class="promise-particles" id="promiseParticles"></div>
 
-      <div class="photo-grid">
-        <div class="photo-frame">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Sample promise" />
-          <span class="photo-caption">A shared promise</span>
+  <!-- Back button -->
+  <button class="promise-back-btn" onclick="goBack()">← Back</button>
+
+  <div class="app">
+    <!-- Header -->
+    <div class="promise-header">
+      <h1>Promise Day ✨ For Kresha</h1>
+      <p class="promise-subtitle">My Most Sacred & Eternal Promise to the Love of My Life</p>
+      <div class="promise-divider"></div>
+    </div>
+
+    <!-- Main content -->
+    <div class="promise-container">
+      <div class="promise-card">
+        <!-- Promise Statement -->
+        <div class="promise-statement">
+          <h2>Kresha, I Promise You...</h2>
+          <p class="promise-text">
+            To love you with every fiber of my being, in every season of our lives. To hold
+            your hand through storms and dance with you under clear skies. You are not just my greatest
+            promise, but my greatest blessing and my deepest commitment. Every heartbeat of mine belongs to you.
+          </p>
+          <p class="promise-text" style="margin-top: 20px; font-style: italic;">
+            Kresha, you make my world softer, brighter, and infinitely more beautiful. With you, I've found my forever.
+          </p>
         </div>
-        <div class="photo-frame">
-          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80" alt="Sample portrait" />
-          <span class="photo-caption">Kresha’s light</span>
+
+        <!-- Promise Items -->
+        <div class="promise-items">
+          <div class="promise-item">
+            <div class="promise-icon">❤️</div>
+            <div class="promise-item-content">
+              <h3>To Love You Unconditionally, Kresha</h3>
+              <p>
+                With a love that grows stronger every single day, forever and always. 
+                You are the reason my heart beats faster, and I will cherish you in every moment.
+              </p>
+            </div>
+          </div>
+
+          <div class="promise-item">
+            <div class="promise-icon">🤝</div>
+            <div class="promise-item-content">
+              <h3>To Stand By You Always, My Love</h3>
+              <p>
+                As your biggest supporter, cheerleader, and safe haven through every chapter of
+                our beautiful story. In your happiness, I find mine.
+              </p>
+            </div>
+          </div>
+
+          <div class="promise-item">
+            <div class="promise-icon">🌹</div>
+            <div class="promise-item-content">
+              <h3>To Make Every Moment With You Magical</h3>
+              <p>
+                Creating unforgettable memories together, finding joy in the simplest moments, and
+                turning ordinary days into extraordinary adventures that we'll cherish forever.
+              </p>
+            </div>
+          </div>
+
+          <div class="promise-item">
+            <div class="promise-icon">💫</div>
+            <div class="promise-item-content">
+              <h3>To Never Stop Caring For You</h3>
+              <p>
+                With genuine attention, thoughtfulness, and efforts that show how much you
+                mean to me. You deserve the world, and I'll spend my life trying to give it to you.
+              </p>
+            </div>
+          </div>
+
+          <div class="promise-item">
+            <div class="promise-icon">🎯</div>
+            <div class="promise-item-content">
+              <h3>To Build Our Dreams Together, Forever</h3>
+              <p>
+                Creating a future filled with endless love, happiness, and beautiful possibilities.
+                You are my forever goal, my dream come true.
+              </p>
+            </div>
+          </div>
+
+          <div class="promise-item">
+            <div class="promise-icon">✨</div>
+            <div class="promise-item-content">
+              <h3>To Love You More Each Day That Passes</h3>
+              <p>
+                Growing together, learning from each other, and making our bond stronger with
+                every sunrise. My love for you knows no limits and no boundaries.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Closing Message -->
+        <div class="promise-closing">
+          <p>My Dearest Kresha,</p>
+          <p>These promises are not just words, but the deepest commitments of my heart.</p>
+          <p class="promise-signature">Forever Yours,<br>Parth 💕</p>
+          <p style="font-size: 14px; color: #c7c2bd; margin-top: 20px;">
+            Every promise here is eternal, unconditional, and will last until the end of time.
+          </p>
         </div>
       </div>
-    </section>
-    <footer class="site-footer">
-      <span class="credit">© 2026 Made by Parth Vaghela | Framework by Sheenath Developers</span>
+    </div>
+
+    <!-- Call to Action -->
+    <div style="text-align: center; margin: 40px 20px 60px; position: relative; z-index: 2;">
+      <div class="promise-cta">
+        <button class="promise-btn promise-btn-primary" id="acceptPromiseBtn">
+          I Accept Your Promise 💝
+        </button>
+      </div>
+      <p id="instructionText" style="margin-top: 20px; color: #c7c2bd; font-size: 14px; position: relative; z-index: 2;">
+        Click to accept these promises and send a message to Parth
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="promise-footer">
+      <span>© 2026 Made by Parth Vaghela | Framework by Sheenath Developers</span>
     </footer>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // ===== PROMISE DAY FUNCTIONALITY =====
+
+    // Initialize particles
+    function initializeParticles() {
+      const container = document.getElementById("promiseParticles");
+      const particleCount = 50;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("promise-particle");
+        
+        const startLeft = Math.random() * 100;
+        const duration = Math.random() * 10 + 8;
+        const delay = Math.random() * 5;
+        
+        particle.style.left = startLeft + "%";
+        particle.style.top = "100vh";
+        particle.style.animationDuration = duration + "s";
+        particle.style.animationDelay = "-" + delay + "s";
+        
+        container.appendChild(particle);
+      }
+    }
+
+    // Create floating hearts on click and scroll
+    function createFloatingHeart(x, y) {
+      const heart = document.createElement("div");
+      heart.classList.add("floating-heart");
+      heart.textContent = "💗";
+      heart.style.left = x + "px";
+      heart.style.top = y + "px";
+      heart.style.setProperty("--tx", (Math.random() - 0.5) * 200 + "px");
+      
+      document.body.appendChild(heart);
+      
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    // Create sparkles
+    function createSparkle(x, y) {
+      const sparkle = document.createElement("div");
+      sparkle.classList.add("sparkle");
+      sparkle.textContent = "✨";
+      sparkle.style.left = x + "px";
+      sparkle.style.top = y + "px";
+      sparkle.style.fontSize = Math.random() * 10 + 8 + "px";
+      
+      document.body.appendChild(sparkle);
+      
+      setTimeout(() => sparkle.remove(), 1500);
+    }
+
+    // Mouse move event for interactive effects
+    document.addEventListener("mousemove", (e) => {
+      if (Math.random() < 0.1) {
+        createSparkle(e.clientX, e.clientY);
+      }
+    });
+
+    // Click event for floating hearts
+    document.addEventListener("click", (e) => {
+      createFloatingHeart(e.clientX, e.clientY);
+      createSparkle(e.clientX, e.clientY);
+    });
+
+    // Configuration
+    const PARTH_WHATSAPP_NUMBER = "+916352335304"; // Parth's number to receive acceptance
+    const GIRLFRIEND_NAME = "Kresha";
+    const BOYFRIEND_NAME = "Parth";
+
+    // Accept promise function (for Kresha)
+    function acceptPromise() {
+      const btn = document.getElementById("acceptPromiseBtn");
+      const instructionText = document.getElementById("instructionText");
+      
+      // Create multiple hearts
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+          createFloatingHeart(
+            window.innerWidth / 2 + (Math.random() - 0.5) * 300,
+            window.innerHeight / 2 + (Math.random() - 0.5) * 200
+          );
+        }, i * 80);
+      }
+      
+      // Prepare acceptance message from Kresha to Parth
+      const message = `${BOYFRIEND_NAME}! 💕\n\nI have accepted ALL your beautiful promises with all my heart! ❤️\n\nI promise to:\n✨ Love you unconditionally\n🤝 Stand by your side always\n🌹 Make every moment magical\n💫 Never stop caring\n🎯 Build our dreams together\n✨ Love you more each day\n\nThese promises are eternal. I am forever yours!\n\nAll my love,\n${GIRLFRIEND_NAME} 💕`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${PARTH_WHATSAPP_NUMBER.replace('+', '')}&text=${encodedMessage}`;
+      
+      // Change button state
+      btn.textContent = "✨ Promise Accepted & Sent! ✨";
+      btn.style.opacity = "0.6";
+      btn.style.pointerEvents = "none";
+      
+      // Update instruction
+      instructionText.textContent = "💕 Your acceptance message is being sent to Parth via WhatsApp!";
+      instructionText.style.color = "#ffc87c";
+      
+      // Open WhatsApp to send message to Parth
+      setTimeout(() => {
+        window.open(whatsappUrl, "_blank");
+      }, 800);
+    }
+
+    // Go back function
+    function goBack() {
+      window.location.href = "index.html";
+    }
+
+    // Animate promise items on scroll
+    function observeItems() {
+      const items = document.querySelectorAll(".promise-item");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animation = "itemSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards";
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      items.forEach((item) => observer.observe(item));
+    }
+
+    // Initialize
+    document.addEventListener("DOMContentLoaded", () => {
+      // Hide intro overlay after animation completes
+      setTimeout(() => {
+        const introOverlay = document.getElementById("introOverlay");
+        if (introOverlay) {
+          introOverlay.style.display = "none";
+        }
+      }, 4500);
+      
+      initializeParticles();
+      observeItems();
+      
+      // Add some initial hearts after intro
+      setTimeout(() => {
+        createFloatingHeart(
+          Math.random() * window.innerWidth,
+          Math.random() * window.innerHeight * 0.5
+        );
+      }, 5000);
+      
+      // Attach accept button handler
+      const acceptBtn = document.getElementById("acceptPromiseBtn");
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", acceptPromise);
+      }
+    });
+
+    // Keyboard events
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        goBack();
+      }
+    });
+  </script>
 </body>
 </html>
