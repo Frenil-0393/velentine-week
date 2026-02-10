@@ -3,59 +3,751 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hug Day • Kresha</title>
+  <title>Hug Day - Warm Embrace for Kresha</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #8B4759 0%, #D4A574 50%, #8B4759 100%);
+      background-size: 400% 400%;
+      animation: warmGradient 15s ease infinite;
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    @keyframes warmGradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Floating warmth particles */
+    .warmth-particle {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 182, 193, 0.4), transparent);
+      filter: blur(8px);
+      animation: floatWarmth 8s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes floatWarmth {
+      0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateY(-30px) translateX(20px) scale(1.2);
+        opacity: 0.6;
+      }
+    }
+
+    .particle-1 {
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .particle-2 {
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .particle-3 {
+      top: 30%;
+      right: 20%;
+      animation-delay: 4s;
+    }
+
+    .particle-4 {
+      bottom: 20%;
+      left: 15%;
+      animation-delay: 3s;
+    }
+
+    /* Main container */
+    .hug-container {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* Header */
+    .hug-header {
+      margin-bottom: 40px;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hug-header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(36px, 8vw, 72px);
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      animation: titleShimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes titleShimmer {
+      0%, 100% {
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+      50% {
+        text-shadow: 0 4px 25px rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    .hug-subtitle {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(18px, 4vw, 32px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+      animation: subtitleFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes subtitleFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Interactive Hug Zone */
+    .hug-zone {
+      perspective: 1000px;
+      margin: 40px 0;
+      animation: zoneAppear 1s ease-out 0.3s both;
+    }
+
+    @keyframes zoneAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .embrace-circle {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 40px;
+      position: relative;
+      animation: embraceRotate 6s linear infinite;
+    }
+
+    @keyframes embraceRotate {
+      from {
+        transform: rotateZ(0deg);
+      }
+      to {
+        transform: rotateZ(360deg);
+      }
+    }
+
+    .embrace-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 182, 193, 0.6), rgba(216, 191, 216, 0.4));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px;
+      box-shadow: 0 0 40px rgba(255, 182, 193, 0.5), inset 0 0 40px rgba(255, 255, 255, 0.2);
+      animation: embracePulse 3s ease-in-out infinite;
+    }
+
+    @keyframes embracePulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 40px rgba(255, 182, 193, 0.5), inset 0 0 40px rgba(255, 255, 255, 0.2);
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 80px rgba(255, 182, 193, 0.8), inset 0 0 60px rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    /* Message Box */
+    .message-box {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 600px;
+      margin: 40px auto;
+      animation: messageSlide 1s ease-out 0.6s both;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes messageSlide {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message-box h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .message-box p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 15px;
+    }
+
+    .message-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Hug Button */
+    .hug-button-container {
+      margin: 40px 0;
+      animation: buttonFade 1s ease-out 0.9s both;
+    }
+
+    @keyframes buttonFade {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hug-btn {
+      background: linear-gradient(135deg, #E91E63, #FF1744);
+      color: white;
+      border: none;
+      padding: 18px 50px;
+      font-size: 18px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hug-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: left 0.3s ease;
+    }
+
+    .hug-btn:hover::before {
+      left: 100%;
+    }
+
+    .hug-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(233, 30, 99, 0.6);
+    }
+
+    .hug-btn:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* Hug Effects */
+    .hug-effect {
+      position: fixed;
+      font-size: 60px;
+      pointer-events: none;
+      animation: hugFloat 2s ease-out forwards;
+      z-index: 100;
+    }
+
+    @keyframes hugFloat {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(0.3);
+      }
+    }
+
+    /* Stats Display */
+    .hug-stats {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 25px;
+      margin: 30px 0;
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: statsSlide 1s ease-out 1.2s both;
+    }
+
+    @keyframes statsSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: #ff6b9d;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Footer */
+    .hug-footer {
+      margin-top: 60px;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Back button */
+    .back-button {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: white;
+      transform: translateX(-5px);
+    }
+
+    @keyframes sectionSlide {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes reasonAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes memoryAppear {
+      from {
+        opacity: 0;
+        transform: rotateY(90deg);
+      }
+      to {
+        opacity: 1;
+        transform: rotateY(0deg);
+      }
+    }
+
+    @keyframes quoteAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hug-container {
+        padding: 30px 15px;
+      }
+
+      .message-box {
+        padding: 30px 20px;
+      }
+
+      .embrace-circle {
+        width: 150px;
+        height: 150px;
+      }
+
+      .embrace-inner {
+        font-size: 80px;
+      }
+
+      .hug-stats {
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .stat-number {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
-<body class="day-page hug" data-page="hug">
-  <div class="page-wrapper">
-    <header class="page-nav">
-      <div class="logo">Hug Day</div>
-      <div class="date-pill" id="todayDisplay"></div>
-    </header>
+<body>
+  <!-- Warmth Particles -->
+  <div class="warmth-particle particle-1"></div>
+  <div class="warmth-particle particle-2"></div>
+  <div class="warmth-particle particle-3"></div>
+  <div class="warmth-particle particle-4"></div>
 
-    <section class="day-container">
-      <div class="day-hero">
-        <div class="hug-orbit">
-          <div class="hug-core"></div>
-          <div class="hug-wave"></div>
-        </div>
-        <h1>Hug Day</h1>
-        <p>
-          This is a warm embrace in a screen — may it wrap around you and hold
-          you close, Kresha.
-        </p>
-      </div>
+  <!-- Back Button -->
+  <button class="back-button" onclick="goBack()">← Back</button>
 
-      <div class="romantic-card">
-        <p>
-          When you need comfort, imagine the circle of my arms around you — the
-          same way this glow expands and keeps returning to you.
-        </p>
-        <div class="soft-divider"></div>
-        <p>
-          You are the place my heart rests. Always.
-        </p>
-      </div>
+  <!-- Main Container -->
+  <div class="hug-container">
+    <!-- Header -->
+    <div class="hug-header">
+      <h1>Hug Day 🤗</h1>
+      <p class="hug-subtitle">My Warmest Embrace for Parth</p>
+    </div>
 
-      <div class="photo-grid">
-        <div class="photo-frame">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Sample warm" />
-          <span class="photo-caption">Warmth</span>
+    <!-- Interactive Hug Zone -->
+    <div class="hug-zone">
+      <div class="embrace-circle">
+        <div class="embrace-inner" id="hugCircle" onclick="sendHug()">🤗</div>
+      </div>
+    </div>
+
+    <!-- Message Box -->
+    <div class="message-box">
+      <h2>My Love For You 💕</h2>
+      <p>
+        A hug from you is more than just a physical gesture—it's everything. It's warmth, safety, and unconditional love.
+      </p>
+      <p>
+        Parth, every single embrace from you makes me feel like you're holding all of me together. 
+        You make me feel so safe, so cherished, and so incredibly loved.
+      </p>
+      <p>
+        I want to send you back all the warmth and love you give me. Your hug is my favorite place in the world, 
+        and I never want to let go of you.
+      </p>
+    </div>
+
+    <!-- Reasons Section -->
+    <div style="max-width: 800px; margin: 60px auto; animation: sectionSlide 1s ease-out 0.8s both;">
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 30px; color: #fff; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);">Why I Love Your Hugs 💕</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 0 20px;">
+        <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 25px; transition: all 0.3s ease; cursor: pointer; animation: reasonAppear 0.6s ease-out 0.2s both;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.background='rgba(255, 255, 255, 0.25)'; this.style.borderColor='rgba(255, 255, 255, 0.5)'; this.style.boxShadow='0 15px 40px rgba(255, 182, 193, 0.3)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='rgba(255, 255, 255, 0.12)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.boxShadow='none'">
+          <div style="font-size: 48px; margin-bottom: 15px;">👐</div>
+          <h3 style="font-size: 18px; margin-bottom: 10px; color: #fff;">They Feel Safe</h3>
+          <p style="font-size: 14px; color: rgba(255, 255, 255, 0.85); line-height: 1.6;">In your arms, all my worries disappear and I feel completely safe and protected.</p>
         </div>
-        <div class="photo-frame">
-          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Sample hug" />
-          <span class="photo-caption">Always close</span>
+        <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 25px; transition: all 0.3s ease; cursor: pointer; animation: reasonAppear 0.6s ease-out 0.4s both;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.background='rgba(255, 255, 255, 0.25)'; this.style.borderColor='rgba(255, 255, 255, 0.5)'; this.style.boxShadow='0 15px 40px rgba(255, 182, 193, 0.3)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='rgba(255, 255, 255, 0.12)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.boxShadow='none'">
+          <div style="font-size: 48px; margin-bottom: 15px;">💓</div>
+          <h3 style="font-size: 18px; margin-bottom: 10px; color: #fff;">Pure Love</h3>
+          <p style="font-size: 14px; color: rgba(255, 255, 255, 0.85); line-height: 1.6;">Every embrace is filled with genuine love, warmth, and deep affection that I feel instantly.</p>
+        </div>
+        <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 25px; transition: all 0.3s ease; cursor: pointer; animation: reasonAppear 0.6s ease-out 0.6s both;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.background='rgba(255, 255, 255, 0.25)'; this.style.borderColor='rgba(255, 255, 255, 0.5)'; this.style.boxShadow='0 15px 40px rgba(255, 182, 193, 0.3)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='rgba(255, 255, 255, 0.12)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.boxShadow='none'">
+          <div style="font-size: 48px; margin-bottom: 15px;">✨</div>
+          <h3 style="font-size: 18px; margin-bottom: 10px; color: #fff;">They're Magic</h3>
+          <p style="font-size: 14px; color: rgba(255, 255, 255, 0.85); line-height: 1.6;">Your hugs have this magical power to make me smile and forget everything else.</p>
         </div>
       </div>
-    </section>
-    <footer class="site-footer">
-      <span class="credit">© 2026 Made by Parth Vaghela | Framework by Sheenath Developers</span>
-    </footer>
+    </div>
+
+    <!-- Love Quotes Section -->
+    <div style="max-width: 700px; margin: 60px auto; animation: sectionSlide 1s ease-out 1s both;">
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 30px; color: #fff; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);">Words For You ✨</h2>
+      <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 40px 30px; position: relative; min-height: 200px; display: flex; align-items: center; justify-content: center;">
+        <div id="quoteDisplay" style="text-align: center; animation: quoteAppear 0.8s ease-out; font-family: 'Dancing Script', cursive; font-size: 24px; color: #fff; line-height: 1.8;">
+          "In your hug, I found my forever home. Every embrace is a promise of our beautiful tomorrow." 💕
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+        <button onclick="previousQuote()" style="background: rgba(255, 255, 255, 0.2); border: 2px solid rgba(255, 255, 255, 0.4); color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255, 255, 255, 0.4)'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='scale(1)'">❮</button>
+        <button onclick="nextQuote()" style="background: rgba(255, 255, 255, 0.2); border: 2px solid rgba(255, 255, 255, 0.4); color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255, 255, 255, 0.4)'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='scale(1)'">❯</button>
+      </div>
+    </div>
+
+    <!-- Memories Section -->
+    <div style="max-width: 800px; margin: 60px auto; animation: sectionSlide 1s ease-out 1.2s both;">
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 30px; color: #fff; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);">Our Beautiful Moments 💫</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; padding: 0 20px;">
+        <div onclick="showMemoryDetail('First Hug')" style="background: linear-gradient(135deg, rgba(233, 30, 99, 0.4), rgba(255, 182, 193, 0.3)); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; animation: memoryAppear 0.6s ease-out 0.3s both;" onmouseover="this.style.transform='translateY(-15px) scale(1.08)'; this.style.background='linear-gradient(135deg, rgba(233, 30, 99, 0.6), rgba(255, 182, 193, 0.5))'; this.style.boxShadow='0 20px 40px rgba(233, 30, 99, 0.4)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='linear-gradient(135deg, rgba(233, 30, 99, 0.4), rgba(255, 182, 193, 0.3))'; this.style.boxShadow='none'">
+          <div style="font-size: 48px; margin-bottom: 10px;">💑</div>
+          <div style="font-size: 16px; font-weight: 600; color: #fff;">First Hug</div>
+        </div>
+        <div onclick="showMemoryDetail('Late Night Talks')" style="background: linear-gradient(135deg, rgba(233, 30, 99, 0.4), rgba(255, 182, 193, 0.3)); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; animation: memoryAppear 0.6s ease-out 0.5s both;" onmouseover="this.style.transform='translateY(-15px) scale(1.08)'; this.style.background='linear-gradient(135deg, rgba(233, 30, 99, 0.6), rgba(255, 182, 193, 0.5))'; this.style.boxShadow='0 20px 40px rgba(233, 30, 99, 0.4)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='linear-gradient(135deg, rgba(233, 30, 99, 0.4), rgba(255, 182, 193, 0.3))'; this.style.boxShadow='none'">
+          <div style="font-size: 48px; margin-bottom: 10px;">🌙</div>
+          <div style="font-size: 16px; font-weight: 600; color: #fff;">Late Night Talks</div>
+        </div>
+        <div onclick="showMemoryDetail('Coffee Dates')" style="background: linear-gradient(135deg, rgba(233, 30, 99, 0.4), rgba(255, 182, 193, 0.3)); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; animation: memoryAppear 0.6s ease-out 0.7s both;" onmouseover="this.style.transform='translateY(-15px) scale(1.08)'; this.style.background='linear-gradient(135deg, rgba(233, 30, 99, 0.6), rgba(255, 182, 193, 0.5))'; this.style.boxShadow='0 20px 40px rgba(233, 30, 99, 0.4)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='linear-gradient(135deg, rgba(233, 30, 99, 0.4), rgba(255, 182, 193, 0.3))'; this.style.boxShadow='none'">
+          <div style="font-size: 48px; margin-bottom: 10px;">☕</div>
+          <div style="font-size: 16px; font-weight: 600; color: #fff;">Coffee Dates</div>
+        </div>
+        <div onclick="showMemoryDetail('Starry Nights')" style="background: linear-gradient(135deg, rgba(233, 30, 99, 0.4), rgba(255, 182, 193, 0.3)); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; animation: memoryAppear 0.6s ease-out 0.9s both;" onmouseover="this.style.transform='translateY(-15px) scale(1.08)'; this.style.background='linear-gradient(135deg, rgba(233, 30, 99, 0.6), rgba(255, 182, 193, 0.5))'; this.style.boxShadow='0 20px 40px rgba(233, 30, 99, 0.4)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='linear-gradient(135deg, rgba(233, 30, 99, 0.4), rgba(255, 182, 193, 0.3))'; this.style.boxShadow='none'">
+          <div style="font-size: 48px; margin-bottom: 10px;">🌟</div>
+          <div style="font-size: 16px; font-weight: 600; color: #fff;">Starry Nights</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hug Button -->
+    <div class="hug-button-container">
+      <button class="hug-btn" id="hugBtn" onclick="sendHugMessage()">
+        Send to Parth 🤗💕
+      </button>
+    </div>
+
+    <!-- Hug Stats -->
+    <div class="hug-stats">
+      <div class="stat">
+        <div class="stat-number" id="hugCount">0</div>
+        <div class="stat-label">Hugs Sent</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" id="hugIntensity">∞</div>
+        <div class="stat-label">Love Level</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="hug-footer">
+      <p>© 2026 Made by Parth Vaghela | Made With Love From Kresha to Parth 💕</p>
+    </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    let hugCounter = 0;
+    const WHATSAPP_NUMBER = "+916352335304";
+    const GIRLFRIEND_NAME = "Kresha";
+    const BOYFRIEND_NAME = "Parth";
+
+    // Send hug with visual effects
+    function sendHug() {
+      hugCounter++;
+      const circle = document.getElementById("hugCircle");
+      const container = document.querySelector(".hug-container");
+
+      // Add bounce animation
+      circle.style.animation = "none";
+      setTimeout(() => {
+        circle.style.animation = "embracePulse 0.5s ease-out";
+      }, 10);
+
+      // Create floating hug effects
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          createHugEffect();
+        }, i * 100);
+      }
+
+      // Update counter with animation
+      const counter = document.getElementById("hugCount");
+      counter.textContent = hugCounter;
+      counter.style.animation = "none";
+      setTimeout(() => {
+        counter.style.color = "#FFB6C1";
+        counter.style.animation = "titleShimmer 0.6s ease-out";
+      }, 10);
+
+      // Haptic feedback if available
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+    }
+
+    function createHugEffect() {
+      const effect = document.createElement("div");
+      effect.classList.add("hug-effect");
+      effect.textContent = "💕";
+      effect.style.left = Math.random() * window.innerWidth + "px";
+      effect.style.top = window.innerHeight / 2 + "px";
+
+      document.body.appendChild(effect);
+
+      setTimeout(() => {
+        effect.remove();
+      }, 2000);
+    }
+
+    // Send message to WhatsApp
+    function sendHugMessage() {
+      const btn = document.getElementById("hugBtn");
+      btn.style.opacity = "0.6";
+      btn.style.pointerEvents = "none";
+      btn.textContent = "💕 Sent to Parth! 💕";
+
+      // Create hug effects
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          createHugEffect();
+        }, i * 80);
+      }
+
+      // Prepare message
+      const message = `${BOYFRIEND_NAME}! 🤗💕\n\nOh my love, I feel all your warm hugs so deeply. 💕\n\nEvery single embrace from you makes me feel so safe, so loved, and so cherished.\n\nYou have the most magical hug that melts away all my worries and fills my heart with pure joy.\n\nI'm sending you back${hugCounter > 1 ? ' ' + hugCounter + ' of my' : ' my'} warmest hugs—\nfilled with all the love I have for you.\n\nYour hug is my favorite place in the world. I never want to let go.\n\n🤗💕🤗\n\nForever in your warm embrace,\n${GIRLFRIEND_NAME} 💕`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER.replace('+', '')}&text=${encodedMessage}`;
+
+      setTimeout(() => {
+        window.open(whatsappUrl, "_blank");
+      }, 600);
+    }
+
+    // Go back function
+    function goBack() {
+      window.location.href = "index.html";
+    }
+
+    // Quote management
+    const quotes = [
+      "In your hug, I found my forever home. Every embrace is a promise of our beautiful tomorrow. 💕",
+      "You hug me like you never want to let go, and that's exactly how I never want to let go of you. 💕",
+      "Your hugs make my heart feel safe in a way nothing else ever could. You are my sanctuary. 💕",
+      "When you hold me, time stops and all I know is that I'm exactly where I need to be - with you. 💕",
+      "Every hug from you is like a warm reminder that I'm loved deeply, completely, and forever. 💕",
+      "Your embrace is my favorite place in the entire world. You are my home, my love, my everything. 💕",
+      "I love how you hug me tight, like you're afraid I might disappear. But I'm not going anywhere. 💕",
+      "In your arms, I've found something I've always been searching for - unconditional love and safety. 💕"
+    ];
+
+    let currentQuoteIndex = 0;
+
+    function nextQuote() {
+      currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+      updateQuote();
+    }
+
+    function previousQuote() {
+      currentQuoteIndex = (currentQuoteIndex - 1 + quotes.length) % quotes.length;
+      updateQuote();
+    }
+
+    function updateQuote() {
+      const quoteDisplay = document.getElementById("quoteDisplay");
+      quoteDisplay.style.animation = "none";
+      setTimeout(() => {
+        quoteDisplay.textContent = quotes[currentQuoteIndex];
+        quoteDisplay.style.animation = "quoteAppear 0.8s ease-out";
+      }, 10);
+    }
+
+    // Memory details
+    function showMemoryDetail(memoryType) {
+      const details = {
+        "First Hug": "That first hug with you was magical... The moment you pulled me close, I felt like I'd come home. Everything made sense. Your warmth, your strength, your tenderness - it was like the universe had finally put me exactly where I belonged. 💑✨",
+        "Late Night Talks": "Our late night conversations where we hold each other and share our deepest thoughts... Those moments under the stars, wrapped in each other's arms, are when I feel most connected to your soul. Those are my favorite memories. 🌙💕",
+        "Coffee Dates": "Every coffee date with you is special because it's not just about the coffee - it's about being near you, hearing your laugh, and feeling your presence. The way you hug me hello and goodbye makes every moment perfect. ☕💑",
+        "Starry Nights": "Our starry nights where we just hold each other and dream about our future together... Looking at the stars while being held by you makes me realize that you're my biggest dream come true. 🌟💫"
+      };
+
+      alert(details[memoryType] || "A beautiful memory with you 💕");
+    }
+
+    // Keyboard event for quote navigation
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") {
+        nextQuote();
+      } else if (e.key === "ArrowLeft") {
+        previousQuote();
+      } else if (e.key === "Escape") {
+        goBack();
+      }
+    });
+
+    // Click hug circle for quick hugs
+    document.getElementById("hugCircle").addEventListener("click", sendHug);
+  </script>
 </body>
 </html>
