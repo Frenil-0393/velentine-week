@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiss Day 💋 - For Parth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Dancing+Script:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #C71585 0%, #FF1493 25%, #FF69B4 50%, #FFB6C1 75%, #FFC0CB 100%);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Force iOS emoji rendering */
+    * {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+    }
+
+    body, h1, h2, h3, p, button, div {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Apple Color Emoji", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating kiss particles */
+    .kiss-particle {
+      position: fixed;
+      font-size: 30px;
+      opacity: 0;
+      pointer-events: none;
+      animation: floatKiss 8s linear infinite;
+      z-index: 1;
+    }
+
+    .kiss-particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .kiss-particle:nth-child(2) { left: 25%; animation-delay: 2s; font-size: 35px; }
+    .kiss-particle:nth-child(3) { left: 40%; animation-delay: 4s; }
+    .kiss-particle:nth-child(4) { left: 55%; animation-delay: 1s; font-size: 40px; }
+    .kiss-particle:nth-child(5) { left: 70%; animation-delay: 3s; }
+    .kiss-particle:nth-child(6) { left: 85%; animation-delay: 5s; font-size: 38px; }
+
+    @keyframes floatKiss {
+      0% {
+        bottom: -10%;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+      }
+      10% {
+        opacity: 0.8;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        bottom: 110%;
+        opacity: 0;
+        transform: translateX(30px) rotate(360deg);
+      }
+    }
+
+    /* Main container */
+    .kiss-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Header */
+    .kiss-header {
+      text-align: center;
+      margin-bottom: 50px;
+      animation: headerAppear 1s ease-out;
+    }
+
+    @keyframes headerAppear {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .kiss-header h1 {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+      font-size: 72px;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 20, 147, 0.6);
+      margin-bottom: 15px;
+      animation: titlePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes titlePulse {
+      0%, 100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 20, 147, 0.6); }
+      50% { text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 60px rgba(255, 20, 147, 0.9), 0 0 80px rgba(255, 105, 180, 0.7); }
+    }
+
+    .kiss-header .subtitle {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Photo section */
+    .kiss-photo-section {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(25px);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 30px;
+      padding: 40px;
+      margin-bottom: 50px;
+      box-shadow: 0 20px 60px rgba(199, 21, 133, 0.4);
+      animation: photoSectionAppear 1s ease-out 0.3s both;
+    }
+
+    @keyframes photoSectionAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .photo-frame {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      animation: photoGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes photoGlow {
+      0%, 100% { box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 20, 147, 0.4); }
+      50% { box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 50px rgba(255, 20, 147, 0.7), 0 0 70px rgba(255, 105, 180, 0.5); }
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-frame:hover img {
+      transform: scale(1.05);
+    }
+
+    .photo-upload-placeholder {
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(255, 105, 180, 0.3));
+      border: 3px dashed rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .photo-upload-placeholder .emoji {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.15); }
+    }
+
+    .photo-caption {
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      margin-top: 20px;
+    }
+
+    /* Message section */
+    .kiss-message {
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 25px;
+      padding: 35px;
+      margin-bottom: 40px;
+      animation: messageSlide 1s ease-out 0.6s both;
+    }
+
+    @keyframes messageSlide {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .kiss-message h2 {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .kiss-message p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 15px;
+    }
+
+    /* Interactive kiss counter */
+    .kiss-counter-section {
+      background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(255, 105, 180, 0.3));
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 25px;
+      padding: 40px;
+      text-align: center;
+      margin-bottom: 40px;
+      animation: counterAppear 1s ease-out 0.9s both;
+    }
+
+    @keyframes counterAppear {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .kiss-counter-section h3 {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 25px;
+    }
+
+    .kiss-emoji-button {
+      font-size: 100px;
+      cursor: pointer;
+      display: inline-block;
+      transition: all 0.3s ease;
+      animation: kissFloat 2s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes kissFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+    }
+
+    .kiss-emoji-button:hover {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .kiss-emoji-button:active {
+      transform: scale(0.95);
+    }
+
+    .kiss-count {
+      font-size: 48px;
+      font-weight: 600;
+      color: white;
+      margin-top: 20px;
+      text-shadow: 0 0 20px rgba(255, 20, 147, 0.8);
+    }
+
+    /* Send button */
+    .send-button {
+      background: linear-gradient(135deg, #FF1493, #FF69B4);
+      border: none;
+      color: white;
+      padding: 20px 50px;
+      font-size: 22px;
+      font-weight: 600;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+      border-radius: 50px;
+      cursor: pointer;
+      display: block;
+      margin: 30px auto;
+      box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
+      transition: all 0.3s ease;
+      animation: buttonGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes buttonGlow {
+      0%, 100% { box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5); }
+      50% { box-shadow: 0 15px 40px rgba(255, 20, 147, 0.8), 0 0 50px rgba(255, 105, 180, 0.6); }
+    }
+
+    .send-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(255, 20, 147, 0.7);
+    }
+
+    .send-button:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Floating kiss effect */
+    .floating-kiss {
+      position: fixed;
+      font-size: 40px;
+      pointer-events: none;
+      animation: floatUpKiss 2s ease-out forwards;
+      z-index: 100;
+    }
+
+    @keyframes floatUpKiss {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(1.5) rotate(360deg);
+      }
+    }
+
+    /* Back button */
+    .back-button {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.4);
+      border-color: white;
+      transform: translateX(-5px);
+    }
+
+    /* Footer */
+    .kiss-footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .kiss-header h1 {
+        font-size: 48px;
+      }
+
+      .kiss-header .subtitle {
+        font-size: 24px;
+      }
+
+      .kiss-photo-section {
+        padding: 25px;
+      }
+
+      .photo-upload-placeholder {
+        height: 300px;
+      }
+
+      .kiss-message {
+        padding: 25px;
+      }
+
+      .kiss-message h2 {
+        font-size: 28px;
+      }
+
+      .kiss-emoji-button {
+        font-size: 80px;
+      }
+
+      .send-button {
+        padding: 15px 35px;
+        font-size: 18px;
+      }
+    }
+
+    /* Intro Overlay Animation */
+    .intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #8B0041 0%, #C71585 50%, #FF1493 100%);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      animation: introFadeOut 0.8s ease-out 15s forwards;
+      pointer-events: none;
+    }
+
+    @keyframes introFadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    .intro-content {
+      text-align: center;
+      padding: 0 30px;
+      max-width: 800px;
+    }
+
+    .intro-text-1 {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: textAppear 0.5s ease-out 0.5s forwards;
+      line-height: 1.6;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .intro-text-2 {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.95);
+      opacity: 0;
+      animation: textAppear 0.5s ease-out 5s forwards;
+      line-height: 1.7;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes textAppear {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.2em;
+      background: white;
+      margin-left: 5px;
+      animation: blink 0.7s infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .intro-text-1 {
+        font-size: 24px;
+      }
+      .intro-text-2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Overlay -->
+  <div class="intro-overlay">
+    <div class="intro-content">
+      <div class="intro-text-1" id="introText1"></div>
+      <div class="intro-text-2" id="introText2"></div>
+    </div>
+  </div>
+  <!-- Kiss Particles -->
+  <div class="kiss-particle">💋</div>
+  <div class="kiss-particle">💋</div>
+  <div class="kiss-particle">💋</div>
+  <div class="kiss-particle">💋</div>
+  <div class="kiss-particle">💋</div>
+  <div class="kiss-particle">💋</div>
+
+  <!-- Back Button -->
+  <button class="back-button" onclick="goBack()">← Back</button>
+
+  <!-- Main Container -->
+  <div class="kiss-container">
+    <!-- Header -->
+    <div class="kiss-header">
+      <h1>Kiss Day 💋</h1>
+      <p class="subtitle">Sealed With Love, From Parth to Kresha</p>
+    </div>
+
+    <!-- Photo Section -->
+    <div class="kiss-photo-section">
+      <div class="photo-frame">
+        <!-- Replace this placeholder with your kiss photo -->
+        <div class="photo-upload-placeholder">
+          <div class="emoji">💋💕</div>
+          <p style="font-family: 'Dancing Script', cursive;">Our Beautiful Kiss Moment</p>
+          <p style="font-size: 16px; margin-top: 10px; opacity: 0.8;">(Add your kiss photo here by replacing this placeholder)</p>
+        </div>
+        <!-- To add your photo, replace the above div with:
+        <img src="your-kiss-photo.jpg" alt="Our Kiss Moment">
+        -->
+      </div>
+      <div class="photo-caption">
+        "This Kiss Is Forever Sealed In My Heart" 💋💕
+      </div>
+    </div>
+
+    <!-- Message Section -->
+    <div class="kiss-message">
+      <h2>My Dearest Kresha 💕</h2>
+      <p>
+        Every kiss I give you comes straight from my heart, and every time I kiss you, the entire world stops spinning. 
+        In those perfect moments, it's just you and me, and nothing else matters.
+      </p>
+      <p>
+        When I kiss you, I want you to feel how much I cherish you, how deeply I love you, and how completely you are mine. 
+        It's not just a kiss - it's a promise, a declaration of my eternal love, and a beautiful connection between our souls.
+      </p>
+      <p>
+        I kiss you softly, tenderly, because you are the most precious thing in my world. 
+        Each kiss is my way of saying "I love you" in a language only our hearts understand.
+      </p>
+      <p>
+        This Kiss Day, I want you to know that every single kiss we've shared is treasured in my heart forever. 
+        You make me feel so complete, so lucky, and so incredibly blessed to have you as mine.
+      </p>
+    </div>
+
+    <!-- Interactive Kiss Counter -->
+    <div class="kiss-counter-section">
+      <h3>Click This To Send Virtual Kisses 💋</h3>
+      <div class="kiss-emoji-button" id="kissButton" onclick="sendKiss()">💋</div>
+      <div class="kiss-count">
+        <span id="kissCount">0</span> Kisses Sent 💕
+      </div>
+    </div>
+
+    <!-- Send WhatsApp Button -->
+    <button class="send-button" onclick="sendKissMessage()">
+      Send My Reply 💋💕
+    </button>
+
+    <!-- Footer -->
+    <div class="kiss-footer">
+      Made With All My Love From Parth to Kresha 💋💕<br>
+      Kiss Day 2026 - February 13
+    </div>
+  </div>
+
+  <script>
+    // Intro typing animation
+    const text1 = "આજે શું જોવા આવી છો કોઈ'દી કિસ કરી છે મને પેલા તી આજે જોવા આવી છો.";
+    const text2 = "હવે આવી છો તો જોતી જા... હવે મને ક્યારેક કિસ કરવા ના દે તો કઈ નઇ પણ ગાલે પપ્પી તો કરવા દેજે હાલ હવે જોતી જાય બનાવ્યું તે....";
+    
+    let index1 = 0;
+    let index2 = 0;
+
+    function typeText1() {
+      const element = document.getElementById("introText1");
+      if (index1 < text1.length) {
+        element.textContent = text1.substring(0, index1 + 1);
+        index1++;
+        setTimeout(typeText1, 50); // 50ms per character
+      } else {
+        // Add cursor for a moment, then start second text
+        element.innerHTML = text1 + '<span class="typing-cursor"></span>';
+        setTimeout(() => {
+          element.innerHTML = text1; // Remove cursor
+          typeText2();
+        }, 1500); // 1 second pause
+      } 
+    }
+
+    function typeText2() {
+      const element = document.getElementById("introText2");
+      if (index2 < text2.length) {
+        element.textContent = text2.substring(0, index2 + 1);
+        index2++;
+        setTimeout(typeText2, 50); // 50ms per character
+      } else {
+        // Add cursor at the end and wait 1 second
+        element.innerHTML = text2 + '<span class="typing-cursor"></span>';
+        // Cursor stays for 1 second before intro fades
+      }
+    }
+
+    // Start typing animation after intro appears
+    setTimeout(typeText1, 1000);
+
+    let kissCounter = 0;
+    const GIRLFRIEND_NAME = "Kresha";
+    const BOYFRIEND_NAME = "Parth";
+
+    function sendKiss() {
+      kissCounter++;
+      document.getElementById("kissCount").textContent = kissCounter;
+
+      // Button animation
+      const button = document.getElementById("kissButton");
+      button.style.animation = "none";
+      setTimeout(() => {
+        button.style.animation = "kissFloat 2s ease-in-out infinite";
+      }, 10);
+
+      // Create floating kiss effects
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          createFloatingKiss();
+        }, i * 150);
+      }
+
+      // Haptic feedback
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+    }
+
+    function createFloatingKiss() {
+      const kiss = document.createElement("div");
+      kiss.classList.add("floating-kiss");
+      kiss.textContent = "💋";
+      kiss.style.left = Math.random() * window.innerWidth + "px";
+      kiss.style.top = window.innerHeight / 2 + "px";
+
+      document.body.appendChild(kiss);
+
+      setTimeout(() => {
+        kiss.remove();
+      }, 2000);
+    }
+
+    function sendKissMessage() {
+      const totalKisses = kissCounter || "all my";
+      const message = `${BOYFRIEND_NAME}! 💋💕
+
+Oh my love, I'm so touched by your beautiful words! ✨
+
+Every kiss you give me makes my heart race and fills me with so much happiness. I feel like the luckiest person alive when you kiss me.
+
+I'm sending you back ${totalKisses} kisses filled with all the love, joy, and passion I have for you! 💋💋💋
+
+Each kiss is my promise to you:
+💋 I love you with all my heart
+💋 You make my world complete
+💋 Forever yours and only yours
+💋 You are my everything
+
+Your kisses are the most magical thing in my world, and I never want to stop kissing you. You're perfect.
+
+Sealed with all my love and endless kisses,
+${GIRLFRIEND_NAME} 💋💕✨`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://api.whatsapp.com/send?phone=916352335304&text=${encodedMessage}`;
+      
+      window.open(whatsappURL, "_blank");
+    }
+
+    function goBack() {
+      window.location.href = "index.html";
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        goBack();
+      } else if (e.key === " " || e.key === "Enter") {
+        sendKiss();
+      }
+    });
+  </script>
+</body>
+</html>
