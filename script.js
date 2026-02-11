@@ -31,7 +31,8 @@ const dayMap = {
   10: "teddy",
   11: "promise",
   12: "hug",
-  13: "valentine",
+  13: "kiss",
+  14: "valentine",
 };
 
 const pageFileMap = {
@@ -41,6 +42,7 @@ const pageFileMap = {
   teddy: "teddy-1.html",
   promise: "promise-1.html",
   hug: "hug-1.html",
+  kiss: "kiss-1.html",
   valentine: "valentine-1.html",
 };
 
@@ -75,7 +77,7 @@ function nextMemory() {
 }
 
 function canUnlockToday() {
-  return month === 1 && day >= 7 && day <= 13;
+  return month === 1 && day >= 7 && day <= 14;
 }
 
 unlockBtn?.addEventListener("click", () => {
@@ -83,7 +85,7 @@ unlockBtn?.addEventListener("click", () => {
     const pageId = dayMap[day];
     window.location.href = pageFileMap[pageId];
   } else {
-    unlockHelper.textContent = "This surprise unlocks from Feb 7 to Feb 13.";
+    unlockHelper.textContent = "This surprise unlocks from Feb 7 to Feb 14.";
   }
 });
 
